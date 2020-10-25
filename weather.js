@@ -10,7 +10,7 @@ var currentHumidty= $("#humidity");
 var currentWSpeed=$("#wind-speed");
 var currentUvindex= $("#uv-index");
 var sCity=[];
-
+var city="";
 
 // AJAX call
 function currentWeather(city){
