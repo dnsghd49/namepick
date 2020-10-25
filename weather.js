@@ -73,7 +73,43 @@ function UVIndex(ln,lt){
         });
 }
 
-// Function for output after user inputs a city name
+// Displaying the Weather in row element
+function forecast(cityid){
+    var dayover= false;
+    var queryforcastURL="https://api.openweathermap.org/data/2.5/forecast?id="+cityid+"&appid="+APIKey;
+    $.ajax({
+        url:queryforcastURL,
+        method:"GET"
+    }).then(function(response){
+        
+        for (i=0;i<5;i++){
+            var date= new Date((response.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
+            var iconcode= response.list[((i+1)*8)-1].weather[0].icon;
+            var iconurl="https://openweathermap.org/img/wn/"+iconcode+".png";
+            var tempK= response.list[((i+1)*8)-1].main.temp;
+            var tempF=(((tempK-273.5)*1.80)+32).toFixed(2);
+            var humidity= response.list[((i+1)*8)-1].main.humidity;
+        
+            $("#fDate"+i).html(date);
+            $("#fImg"+i).html("<img src="+iconurl+">");
+            $("#fTemp"+i).html(tempF+"&#8457");
+            $("#fHumidity"+i).html(humidity+"%");
+        }
+        
+    });
+}
+
+// Check if the input is a valid city or not
+function find(c){
+    for (var i=0; i<sCity.length; i++){
+        if(c.toUpperCase()===sCity[i]){
+            return -1;
+        }
+    }
+    return 1;
+}
+
+// Function to display output waether after user inputs a city name
 function displayWeather(event){
     event.preventDefault();
     if(searchCity.val().trim()!==""){
@@ -81,6 +117,7 @@ function displayWeather(event){
         currentWeather(city);
     }
 }
+
 // Function for saving the inputs
 function addToList(c){
     var listEl= $("<li>"+c.toUpperCase()+"</li>");

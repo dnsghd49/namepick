@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/28a28de6f9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main.css">
-    <title>Weather</title>
+    <title>Weather Dashboard</title>
 </head>
 <body>
     <div class="bg-dark pt-2 pb-2"> 
@@ -24,7 +24,7 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control"id="search-city" aria-label="City Search" aria-describedby="search-button">
                     <div class="input-group-append">
-                        <button class=" btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
+                        <button class="btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
                 <!--btn for clearing history-->
@@ -68,14 +68,24 @@
                             <p>Humidity:<span id="fHumidity2"></span></p>
                         </div>
                         <!--finish this up-->
+                        <div class="col-sm-2 bg-primary text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                            <p id="fDate3"></p>
+                            <p id="fImg3"></p>
+                            <p>Temp:<span id="fTemp3"></span></p>
+                            <p>Humidity:<span id="fHumidity3"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                            <p id="fDate4"></p>
+                            <p id="fImg4"></p>
+                            <p>Temp:<span id="fTemp4"></span></p>
+                            <p>Humidity:<span id="fHumidity4"></span></p>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="weather.js"></script>
 </body>
 </html>
