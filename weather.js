@@ -31,5 +31,25 @@ function currentWeather(city){
         //first convert K to F and then output the temp
         var tempF = (response.main.temp - 273.15) * 1.80 + 32;
         $(currentTemperature).html((tempF).toFixed(2)+"&#8457");
+        
+        //outputs humidity
+        $(currentHumidty).html(response.main.humidity+"%");
+        
+        //windspeed
+        var ws=response.wind.speed;
+        var windsmph=(ws*2.237).toFixed(1);
+        $(currentWSpeed).html(windsmph+"MPH");
+
+
     })
+}
+
+
+//function for output after user inputs a city name
+function displayWeather(event){
+    event.preventDefault();
+    if(searchCity.val().trim()!==""){
+        city=searchCity.val().trim();
+        currentWeather(city);
+    }
 }
