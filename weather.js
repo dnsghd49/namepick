@@ -1,6 +1,6 @@
-//adding API key
+// Adding API key
 var APIKey="a0aca8a89948154a4182dcecc780b513";
-// all the vars that I need
+// All the vars that I need
 var searchCity = $("#search-city");
 var searchButton = $("#search-button");
 var clearButton = $("#clear-history");
@@ -62,13 +62,29 @@ function currentWeather(city){
         }
     })
 }
+// Function to return the UVindex response!!!
+function UVIndex(ln,lt){
+    var uvqURL="https://api.openweathermap.org/data/2.5/uvi?appid="+ APIKey+"&lat="+lt+"&lon="+ln;
+    $.ajax({
+        url:uvqURL,
+        method:"GET"
+        }).then(function(response){
+            $(currentUvindex).html(response.value);
+        });
+}
 
-
-//function for output after user inputs a city name
+// Function for output after user inputs a city name
 function displayWeather(event){
     event.preventDefault();
     if(searchCity.val().trim()!==""){
         city=searchCity.val().trim();
         currentWeather(city);
     }
+}
+// Function for saving the inputs
+function addToList(c){
+    var listEl= $("<li>"+c.toUpperCase()+"</li>");
+    $(listEl).attr("class","list-group-item");
+    $(listEl).attr("data-value",c.toUpperCase());
+    $(".list-group").append(listEl);
 }
