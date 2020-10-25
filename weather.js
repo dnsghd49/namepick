@@ -28,5 +28,8 @@ function currentWeather(city){
         //Icon will change depends on the ananlysis
         $(currentCity).html(response.name +"("+date+")" + "<img src="+iconurl+">");
     
+        //first convert K to F and then output the temp
+        var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+        $(currentTemperature).html((tempF).toFixed(2)+"&#8457");
     })
 }
