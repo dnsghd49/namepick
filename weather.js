@@ -19,7 +19,6 @@ function currentWeather(city){
         url:queryURL,
         method:"GET", 
     }).then(function(response){
-        console.log(response);
         //Setting up weather icons
         var weathericon= response.weather[0].icon;
         var iconurl="https://openweathermap.org/img/wn/"+weathericon +"@2x.png";
@@ -95,7 +94,6 @@ function forecast(cityid){
             $("#fTemp"+i).html(tempF+"&#8457");
             $("#fHumidity"+i).html(humidity+"%");
         }
-        
     });
 }
 
@@ -109,7 +107,7 @@ function find(c){
     return 1;
 }
 
-// Function to display output waether after user inputs a city name
+// Function to display output(waether info) after user inputs a city name
 function displayWeather(event){
     event.preventDefault();
     if(searchCity.val().trim()!==""){
@@ -125,11 +123,24 @@ function addToList(c){
     $(listEl).attr("data-value",c.toUpperCase());
     $(".list-group").append(listEl);
 }
+// Outputing the saved inputs
+function invokePastSearch(event){
+    var liEl=event.target;
+    if (event.target.matches("li")){
+        city=liEl.textContent.trim();
+        currentWeather(city);
+    }
+}
+// Clear history btn function
+function clearHistory(event){
+    event.preventDefault();
+    sCity=[];
+    localStorage.removeItem("cityname");
+    document.location.reload();
+}
 
 
-
-
-
+// Main
 function loadlastCity(){
     $("ul").empty();
     var sCity = JSON.parse(localStorage.getItem("cityname"));
@@ -141,7 +152,6 @@ function loadlastCity(){
         city=sCity[i-1];
         currentWeather(city);
     }
-
 }
 
 //Click handler
